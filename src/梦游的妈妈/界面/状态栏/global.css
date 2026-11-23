@@ -1,0 +1,33 @@
+/* 功能语义命名，禁止视觉描述命名 */
+:root {
+  --c-surface: #14100d;
+  --c-surface-raised: #1a1512;
+  --c-surface-sunken: #221c18;
+  --c-text: #ece4d8;
+  --c-text-muted: #a2958a;
+  --c-border: #2c2521;
+  --c-primary: #d9a05b;
+  --c-calm: #7f8f86;
+  --c-danger: #c9634a;
+  --c-heat: #d08356;
+  --c-sink: #a97a86;
+  --c-attach: #cfa96a;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  padding: 2px 0;
+}
