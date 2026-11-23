@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "日期": {
+          "default": "2025/09/05",
+          "type": "string",
+          "description": "当前日期，格式 YYYY/MM/DD"
+        },
+        "时刻": {
+          "default": "22:40",
+          "type": "string",
+          "description": "当前具体时刻，24 小时制 HH:MM"
+        },
+        "星期": {
+          "default": "五",
+          "type": "string",
+          "enum": [
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "日"
+          ],
+          "description": "星期几，关系到<user>上学和徐琦的排班"
+        },
+        "场景": {
+          "default": "儿子房间",
+          "type": "string",
+          "enum": [
+            "儿子房间",
+            "主卧",
+            "客厅",
+            "厨房",
+            "走廊",
+            "卫生间",
+            "玄关",
+            "医院病区",
+            "外面"
+          ],
+          "description": "当前所处场景，决定地理条目是否被激活"
+        },
+        "父亲": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "状态": {
+              "default": "在主卧熟睡",
+              "type": "string",
+              "enum": [
+                "在主卧熟睡",
+                "在主卧醒着",
+                "起夜中",
+                "在客厅",
+                "应酬未归"
+              ],
+              "description": "陈国栋此刻的状态，是这张卡的风险开关；深夜 23 点之后不得停留在「应酬未归」"
+            },
+            "怀疑度": {
+              "default": 0,
+              "type": "number",
+              "description": "陈国栋的起疑程度，0~100；超过 40 开始主动观察，超过 70 会开口问"
+            }
+          }
+        }
+      }
+    },
+    "徐琦": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "阶段": {
+          "default": "真梦游",
+          "type": "string",
+          "enum": [
+            "真梦游",
+            "装睡",
+            "假装梦游",
+            "摊牌"
+          ],
+          "description": "全卡第一主线刻度：真梦游=无意识找暖，装睡=清醒装睡，假装梦游=借梦话主动索取，摊牌=不再演"
+        },
+        "沉沦度": {
+          "default": 20,
+          "type": "number",
+          "description": "她在多大程度上已经接受这件事，0~100；低=还在自我说服，高=完全认了"
+        },
+        "积压值": {
+          "default": 50,
+          "type": "number",
+          "description": "玩家回避造成的不满足，0~100；超过 60 她开始主动进屋，超过 85 白天也快藏不住"
+        },
+        "感情深度": {
+          "default": 10,
+          "type": "number",
+          "description": "感情刻度，0~100；区分「只是欲望」和「已经离不开了」，只有性行为不涨"
+        },
+        "心情": {
+          "default": "疲惫，睡着以后反而松下来了",
+          "type": "string",
+          "description": "她此刻的情绪状态，用一句自然语言描述，不写数值"
+        },
+        "是否在床": {
+          "default": true,
+          "type": "boolean",
+          "description": "她此刻是否已经在<user>的床上"
+        },
+        "身体状态": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "睡眠": {
+              "default": "深睡",
+              "type": "string",
+              "enum": [
+                "深睡",
+                "浅睡",
+                "将醒",
+                "已醒"
+              ],
+              "description": "她的睡眠深度；阶段一为深睡或浅睡，阶段二起是已醒但装睡。疲惫程度只落在这一项上，不设班次变量"
+            },
+            "睡衣": {
+              "default": "棉质长袖睡衣，穿着整齐",
+              "type": "string",
+              "description": "睡衣此刻的状态：穿好、滑落、敞开、脱下，自由描述"
+            },
+            "被子": {
+              "default": "被子被掀开一半，搭在两人身上",
+              "type": "string",
+              "description": "被子在谁身上：在她身上、在<user>身上、在两人身上、被掀开，自由描述"
+            }
+          }
+        }
+      }
+    }
+  }
+}
