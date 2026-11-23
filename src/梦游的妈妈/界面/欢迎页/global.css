@@ -1,0 +1,291 @@
+/* 功能语义命名，禁止视觉描述命名 */
+:root {
+  --c-surface: #14100d;
+  --c-surface-raised: #1a1512;
+  --c-surface-sunken: #221c18;
+  --c-text: #ece4d8;
+  --c-text-muted: #a2958a;
+  --c-border: #2c2521;
+  --c-primary: #d9a05b;
+  --c-calm: #7f8f86;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.welcome {
+  max-width: 620px;
+  margin: 10px auto;
+  padding: 22px 20px 26px;
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  background: radial-gradient(120% 150% at 0% 0%, #1c1713 0%, #14100d 58%, #100c0a 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 3%),
+    0 8px 24px rgb(0 0 0 / 38%);
+  animation: rise 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.head {
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: var(--c-text);
+  text-shadow: 0 0 34px rgb(217 160 91 / 32%);
+}
+
+.sub {
+  margin: 12px 0 0;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--c-text-muted);
+}
+
+/* 主视觉：纯 CSS 的走廊与门缝 */
+.hero {
+  margin-bottom: 18px;
+}
+
+.corridor {
+  position: relative;
+  display: flex;
+  height: 150px;
+  border: 1px solid rgb(217 160 91 / 14%);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0d0a08, #171210 62%, #0b0807);
+}
+
+.corridor .wall {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 2.4%) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 1.6%) 0 1px, transparent 1px 60px);
+}
+
+.corridor .door {
+  position: relative;
+  align-self: stretch;
+  flex: 1;
+  margin: 22px 12px 22px;
+  border: 1px solid rgb(217 160 91 / 16%);
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #17120f, #0f0b09);
+  box-shadow: inset 0 0 22px rgb(0 0 0 / 60%);
+}
+
+.corridor .door-left {
+  margin-right: 6px;
+}
+
+.corridor .door-right {
+  margin-left: 6px;
+}
+
+.corridor .crack {
+  position: absolute;
+  top: 12%;
+  bottom: 0;
+  right: -1px;
+  width: 2px;
+  background: linear-gradient(180deg, rgb(217 160 91 / 55%), rgb(217 160 91 / 12%));
+  box-shadow: 0 0 14px rgb(217 160 91 / 45%);
+  animation: breathe 4.6s ease-in-out infinite alternate;
+}
+
+.corridor .door-right .crack {
+  right: auto;
+  left: -1px;
+  animation-delay: 1.2s;
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 0.45;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.corridor .floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 16%;
+  background: repeating-linear-gradient(90deg, #16110e 0 22px, #1b1512 22px 44px);
+  border-top: 1px solid rgb(217 160 91 / 10%);
+}
+
+.hero-caption {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  color: var(--c-text-muted);
+}
+
+/* 剧情铺垫 */
+.story {
+  padding: 14px 0 4px;
+  border-top: 1px solid var(--c-border);
+}
+
+.story-label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--c-primary);
+}
+
+.typewriter {
+  min-height: 108px;
+  font-size: 13.5px;
+  line-height: 1.95;
+  color: var(--c-text);
+}
+
+.typewriter p {
+  margin: 0 0 10px;
+}
+
+.typewriter .cursor {
+  display: inline-block;
+  width: 6px;
+  height: 13px;
+  margin-left: 2px;
+  background: var(--c-primary);
+  vertical-align: -1px;
+  animation: blink 1s steps(1) infinite;
+}
+
+.typewriter .cursor.done {
+  display: none;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.skip-hint {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--c-text-muted);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skip-hint.show {
+  opacity: 0.75;
+}
+
+/* 提示 */
+.hints {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  list-style: none;
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  background: var(--c-surface-raised);
+}
+
+.hints li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--c-text-muted);
+}
+
+.hints li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgb(217 160 91 / 60%);
+}
+
+/* 按钮 */
+.action {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.enter {
+  padding: 12px 34px;
+  border: 1px solid rgb(217 160 91 / 40%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgb(217 160 91 / 16%), rgb(217 160 91 / 6%));
+  color: var(--c-primary);
+  font-size: 13px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.3s ease,
+    letter-spacing 0.3s ease;
+}
+
+.enter:hover {
+  letter-spacing: 6px;
+  box-shadow: 0 0 22px rgb(217 160 91 / 28%);
+}
+
+.enter:active {
+  transform: scale(0.97);
+}
+
+.enter[disabled] {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.footnote {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--c-text-muted);
+  opacity: 0.7;
+}
