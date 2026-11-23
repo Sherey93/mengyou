@@ -1,4 +1,6 @@
 import './global.css';
+import 护士一 from './护士一.webp?url';
+import 护士二 from './护士二.webp?url';
 
 /** 前情三段，打字机逐字铺开；点击正文可跳过 */
 const 段落 = [
@@ -109,6 +111,8 @@ function 跑打字机() {
 }
 
 function init() {
+  document.documentElement.style.setProperty('--welcome-img-left', `url("${护士一}")`);
+  document.documentElement.style.setProperty('--welcome-img-right', `url("${护士二}")`);
   跑打字机();
   const 按钮 = document.getElementById('enterBtn') as HTMLButtonElement | null;
   按钮?.addEventListener('click', () => 翻到开场白(按钮));
