@@ -7,11 +7,12 @@
       :father-label="父亲文案"
       :father-level="父亲等级"
       :suspicion="世界.父亲.怀疑度"
+      :father-days="父亲离家天数"
     />
 
     <div class="stage">
       <span class="stage-name">{{ 徐琦.阶段 }}</span>
-      <span class="stage-scale" :aria-label="`阶段进度 ${当前阶段序 + 1} / 4`">
+      <span class="stage-scale" :aria-label="`阶段进度 ${当前阶段序 + 1} / 3`">
         <i v-for="(各段, 序) in 阶段序" :key="各段" class="stage-seg" :class="{ on: 序 <= 当前阶段序 }"></i>
       </span>
     </div>
@@ -43,7 +44,7 @@ const store = useDataStore();
 const 世界 = computed(() => store.data.世界);
 const 徐琦 = computed(() => store.data.徐琦);
 
-const 阶段序 = ['真梦游', '装睡', '假装梦游', '摊牌'] as const;
+const 阶段序 = ['真梦游', '装睡', '摊牌'] as const;
 const 当前阶段序 = computed(() => {
   const 序 = 阶段序.indexOf(徐琦.value.阶段);
   return 序 < 0 ? 0 : 序;
@@ -55,6 +56,7 @@ const 父亲文案表: Record<string, string> = {
   起夜中: '他起来了',
   在客厅: '他在客厅',
   应酬未归: '还没回',
+  出差中: '出差了',
 };
 
 const 父亲等级表: Record<string, 'calm' | 'alert' | 'muted'> = {
@@ -63,10 +65,14 @@ const 父亲等级表: Record<string, 'calm' | 'alert' | 'muted'> = {
   起夜中: 'alert',
   在客厅: 'alert',
   应酬未归: 'muted',
+  出差中: 'muted',
 };
 
 const 父亲文案 = computed(() => 父亲文案表[世界.value.父亲.状态] ?? 世界.value.父亲.状态);
 const 父亲等级 = computed(() => 父亲等级表[世界.value.父亲.状态] ?? 'muted');
+
+// 只有「出差中」时天数才有意义；他回家的那一夜归零，这里再兜一层，旧存档残留的天数不会挂在他在家的时候
+const 父亲离家天数 = computed(() => (世界.value.父亲.状态 === '出差中' ? 世界.value.父亲.离家天数 : 0));
 </script>
 
 <style scoped>

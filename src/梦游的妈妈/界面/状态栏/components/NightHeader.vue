@@ -10,20 +10,25 @@
     <div class="head-right" :class="`lv-${fatherLevel}`">
       <span class="lamp" aria-hidden="true"></span>
       <span class="father">{{ fatherLabel }}</span>
+      <span v-if="fatherDays > 0" class="days">第 {{ fatherDays }} 天</span>
       <span v-if="suspicion >= 40" class="suspicion">疑 {{ suspicion }}</span>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  clock: string;
-  weekday: string;
-  scene: string;
-  fatherLabel: string;
-  fatherLevel: string;
-  suspicion: number;
-}>();
+withDefaults(
+  defineProps<{
+    clock: string;
+    weekday: string;
+    scene: string;
+    fatherLabel: string;
+    fatherLevel: string;
+    suspicion: number;
+    fatherDays?: number;
+  }>(),
+  { fatherDays: 0 },
+);
 </script>
 
 <style scoped>
@@ -102,6 +107,15 @@ defineProps<{
   color: var(--c-danger);
   font-variant-numeric: tabular-nums;
   opacity: 0.85;
+}
+
+.days {
+  padding-left: 6px;
+  border-left: 1px solid var(--c-border);
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
 }
 
 @keyframes breathe {
